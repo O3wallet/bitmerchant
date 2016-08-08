@@ -71,31 +71,31 @@
 				</dependency>
 			</dependencies>
 		</profile>
-		<!-- This profile will sign the JAR file, sources file, and javadocs file 
+		<!-- This profile will sign the JAR file, sources file, and javadocs file
 			using the GPG key on the local machine. See: https://docs.sonatype.org/display/Repository/How+To+Generate+PGP+Signatures+With+Maven -->
-		<profile>
-			<id>release-sign-artifacts</id>
-			<activation>
-				<property>
-					<name>release</name>
-					<value>true</value>
-				</property>
-			</activation>
-		</profile>
+		<!--<profile>-->
+			<!--<id>release-sign-artifacts</id>-->
+			<!--<activation>-->
+				<!--<property>-->
+					<!--<name>release</name>-->
+					<!--<value>true</value>-->
+				<!--</property>-->
+			<!--</activation>-->
+		<!--</profile>-->
 
-		<profile>
-			<id>sonatype-oss-release</id>
-			<properties>
-				<gpg.keyname>99E3403D</gpg.keyname>
-				<gpg.passphrase />
-				<gpg.defaultKeyring>false</gpg.defaultKeyring>
-				<gpg.useagent>true</gpg.useagent>
-				<gpg.lockMode>never</gpg.lockMode>
-				<gpg.homedir>/home/tyler/.gnupg</gpg.homedir>
-				<gpg.publicKeyring>/home/tyler/.gnupg/pubring.gpg</gpg.publicKeyring>
-				<gpg.secretKeyring>/home/tyler/.gnupg/secring.gpg</gpg.secretKeyring>
-			</properties>
-		</profile>
+		<!--<profile>-->
+			<!--<id>sonatype-oss-release</id>-->
+			<!--<properties>-->
+				<!--<gpg.keyname>99E3403D</gpg.keyname>-->
+				<!--<gpg.passphrase />-->
+				<!--<gpg.defaultKeyring>false</gpg.defaultKeyring>-->
+				<!--<gpg.useagent>true</gpg.useagent>-->
+				<!--<gpg.lockMode>never</gpg.lockMode>-->
+				<!--<gpg.homedir>/home/tyler/.gnupg</gpg.homedir>-->
+				<!--<gpg.publicKeyring>/home/tyler/.gnupg/pubring.gpg</gpg.publicKeyring>-->
+				<!--<gpg.secretKeyring>/home/tyler/.gnupg/secring.gpg</gpg.secretKeyring>-->
+			<!--</properties>-->
+		<!--</profile>-->
 	</profiles>
 
 
@@ -127,19 +127,19 @@
 	</pluginRepositories>
 	<build>
 		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-gpg-plugin</artifactId>
-				<executions>
-					<execution>
-						<id>sign-artifacts</id>
-						<phase>verify</phase>
-						<goals>
-							<goal>sign</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
+			<!--<plugin>-->
+				<!--<groupId>org.apache.maven.plugins</groupId>-->
+				<!--<artifactId>maven-gpg-plugin</artifactId>-->
+				<!--<executions>-->
+					<!--<execution>-->
+						<!--<id>sign-artifacts</id>-->
+						<!--<phase>verify</phase>-->
+						<!--<goals>-->
+							<!--<goal>sign</goal>-->
+						<!--</goals>-->
+					<!--</execution>-->
+				<!--</executions>-->
+			<!--</plugin>-->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-release-plugin</artifactId>
@@ -178,7 +178,7 @@
 							<minimizeJar>false</minimizeJar>
 							<filters>
 								<filter>
-									<!-- exclude signatures, the bundling process breaks them for some 
+									<!-- exclude signatures, the bundling process breaks them for some
 										reason -->
 									<artifact>*:*</artifact>
 									<excludes>
@@ -302,12 +302,12 @@
 		<dependency>
 			<groupId>org.bitcoinj</groupId>
 			<artifactId>bitcoinj-core</artifactId>
-			<version>0.13-SNAPSHOT</version>
+			<version>0.14.3</version>
 		</dependency>
 		<dependency>
 			<groupId>org.bitcoinj</groupId>
 			<artifactId>bitcoinj-tools</artifactId>
-			<version>0.13-SNAPSHOT</version>
+			<version>0.14.3</version>
 		</dependency>
 		<dependency>
 			<groupId>com.google.guava</groupId>

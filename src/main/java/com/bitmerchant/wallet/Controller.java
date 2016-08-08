@@ -16,22 +16,23 @@ import java.util.NoSuchElementException;
 
 import javax.annotation.Nullable;
 
-import org.bitcoinj.core.AbstractWalletEventListener;
 import org.bitcoinj.core.Address;
 import org.bitcoinj.core.AddressFormatException;
 import org.bitcoinj.core.Coin;
-import org.bitcoinj.core.DownloadProgressTracker;
 import org.bitcoinj.core.ECKey;
 import org.bitcoinj.core.InsufficientMoneyException;
 import org.bitcoinj.core.Transaction;
 import org.bitcoinj.core.TransactionConfidence;
-import org.bitcoinj.core.Wallet;
+import org.bitcoinj.core.listeners.DownloadProgressTracker;
+import org.bitcoinj.wallet.SendRequest;
+import org.bitcoinj.wallet.Wallet;
 import org.bitcoinj.crypto.KeyCrypterException;
 import org.bitcoinj.crypto.KeyCrypterScrypt;
 import org.bitcoinj.crypto.MnemonicCode;
 import org.bitcoinj.crypto.MnemonicException;
 import org.bitcoinj.utils.MonetaryFormat;
 import org.bitcoinj.wallet.DeterministicSeed;
+import org.bitcoinj.wallet.listeners.AbstractWalletEventListener;
 import org.joda.money.Money;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -338,7 +339,7 @@ public class Controller {
 		try {
 			destination = new Address(LocalWallet.params, addressStr);
 
-			Wallet.SendRequest req = Wallet.SendRequest.to(destination, amount);
+			SendRequest req = SendRequest.to(destination, amount);
 
 			String message = sendWalletRequest(req);
 
@@ -353,7 +354,7 @@ public class Controller {
 
 	}
 
-	public String sendWalletRequest(Wallet.SendRequest req) {
+	public String sendWalletRequest(SendRequest req) {
 		// TODO Address exception cannot happen as we validated it beforehand.
 		try {
 
@@ -395,7 +396,7 @@ public class Controller {
 
 	public String sendRefund(Transaction tx) {
 
-		Wallet.SendRequest req = Wallet.SendRequest.forTx(tx);
+		SendRequest req = SendRequest.forTx(tx);
 		String message = sendWalletRequest(req);
 
 		return message;
